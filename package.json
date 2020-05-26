@@ -1,7 +1,7 @@
 {
   "name": "ssml-test-tvsxny",
   "version": "1.0.0",
-  "description": "SSML Test",
+  "description": "SSML Test Sample",
   "main": "index.js",
   "scripts": {
     "start": "node index.js"
