@@ -15,8 +15,3 @@ This simple app will help you understand
 
 Open DialogFlow portal - https://dialogflow.com/
 - Create an account and login
-
-# Video
-Watch this video to learn the steps to create sample application.
-
-[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/KcEo0eKDLpI/0.jpg)](https://www.youtube.com/watch?v=KcEo0eKDLpI&t=8s)
