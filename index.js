@@ -17,8 +17,8 @@ restService.post("/ssml", function(req, res) {
   var speech =
     req.body.queryResult &&
     req.body.queryResult.parameters &&
-    req.body.queryResult.parameters.echoText
-      ? req.body.queryResult.parameters.echoText
+    req.body.queryResult.parameters.aliasTest
+      ? req.body.queryResult.parameters.aliasTest
       : "Seems like some problem. Speak again.";
   
   var speechResponse = {
@@ -42,7 +42,7 @@ restService.post("/ssml", function(req, res) {
     fulfillmentText: speech,
     speech: speech,
     displayText: speech,
-    source: "webhook-echo-sample"
+    source: "ssml-test-tvsxny"
   });
 });
 
