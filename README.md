@@ -1,6 +1,6 @@
 # Webhook-and-API.AI-Sample - Echo your text
 
-A very simple step by step demo (see video at the end of read me) of implementing an echo service using webhook. Whatever user asks Google Assistant will be sent to your API and then same text will be sent back as speech text.
+A very simple step by step demo of implementing an echo service using webhook. Whatever user asks Google Assistant will be sent to your API and then same text will be sent back as speech text.
 
 This simple app will help you understand
 - How to write an API in node
@@ -11,7 +11,7 @@ This simple app will help you understand
 
 # How it works?
 - Push this app to Heroku
-- Test the API https://webhook-echo-sample.herokuapp.com/echo - download postman from https://www.getpostman.com/ to test it
+- Test the API https://ssml-test-tvsxny.herokuapp.com/ssml - download postman from https://www.getpostman.com/ to test it
 
 Open DialogFlow portal - https://dialogflow.com/
 - Create an account and login
