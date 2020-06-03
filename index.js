@@ -16,7 +16,7 @@ restService.use(bodyParser.json());
 restService.post("/ssml", function(req, res) {
   var speech = req.body.queryResult && req.body.queryResult.parameters && req.body.queryResult.parameters.aliasTest
 	? req.body.queryResult.parameters.aliasTest : "Seems like some problem. Speak again.";
-  if(speech === 'alias'){
+  if(req.body.queryResult.parameters.aliasTest === 'alias'){
 	  let response = '<speak>I can substitute phrases, like the <sub alias=\"World Wide Web Consortium\">W3C</sub></speak>'
 	  speech : response;
   }else{
