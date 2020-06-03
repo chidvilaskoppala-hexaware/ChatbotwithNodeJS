@@ -28,7 +28,7 @@ restService.post("/ssml", function(req, res) {
         items: [
           {
             simpleResponse: {
-              textToSpeech: speech
+              textToSpeech: "Response sent from your NodeJS code. Congratulations on your achievement!"
             }
           }
         ]
