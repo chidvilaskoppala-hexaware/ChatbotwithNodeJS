@@ -28,7 +28,7 @@ restService.post("/ssml", function(req, res) {
         items: [
           {
             simpleResponse: {
-              textToSpeech: '<speak>I can substitute phrases, like the <sub alias=\"World Wide Web Consortium\">W3C</sub></speak>';
+              textToSpeech: speech
             }
           }
         ]
