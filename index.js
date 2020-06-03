@@ -21,17 +21,10 @@ restService.post("/ssml", function(req, res) {
       ? req.body.queryResult.parameters.aliasTest
       : "Seems like some problem. Speak again.";
 	  
-	  var ssmlAlias = "<speak>I can substitute phrases, like the <sub alias=\"World Wide Web Consortium\">W3C</sub></speak>";
-	  var ssmlBreak = "<speak>I can pause <break time=\"3\" /></speak>";
-	  var ssmlDigits = "<speak>I can even speak in digits. Your position in line is <say-as interpret-as=\"digits\">10</say-as></speak>";
-	  var ssmlOrdinal = "<speak>I can speak in ordinals. You are <say-as interpret-as=\"ordinal\">10</say-as> in line</speak>";
-	  var ssmlCardinal = "<speak>I can speak in cardinals. Your position is <say-as interpret-as=\"cardinal\">10</say-as> in line</speak>";
-	  var ssmlParagraph = "<speak>I can speak a paragraph with two sentences. <p><s>This is sentence one.</s><s>This is sentence two.</s></p></speak>";
+ var speechResponse = "";
  
- var userQuery = req.body.queryResult.queryText;
- 
- if(userQuery === "alias"){
-  var speechResponse = {
+ if(req.body.queryResult.parameters.aliasTest === "alias"){
+	speechResponse = {
     google: {
       expectUserResponse: true,
       richResponse: {
@@ -45,24 +38,8 @@ restService.post("/ssml", function(req, res) {
       }
     }
   }
- }else{
-	  var speechResponse = {
-    google: {
-      expectUserResponse: true,
-      richResponse: {
-        items: [
-          {
-            simpleResponse: {
-              textToSpeech: "Sorry, i'am Alias!";
-            }
-          }
-        ]
-      }
-    }
-  }
- };
- if(userQuery === "break"){
-	 var speechResponse = {
+ }else if(req.body.queryResult.parameters.aliasTest === "break"){
+	speechResponse = {
     google: {
       expectUserResponse: true,
       richResponse: {
@@ -76,24 +53,8 @@ restService.post("/ssml", function(req, res) {
       }
     }
   }
- }else{
-	  var speechResponse = {
-    google: {
-      expectUserResponse: true,
-      richResponse: {
-        items: [
-          {
-            simpleResponse: {
-              textToSpeech: "Sorry, i'am Break!";
-            }
-          }
-        ]
-      }
-    }
-  }
- };
- if(userQuery === "digit"){
-	 var speechResponse = {
+ }else if(req.body.queryResult.parameters.aliasTest === "digit"){
+	 speechResponse = {
     google: {
       expectUserResponse: true,
       richResponse: {
@@ -107,24 +68,8 @@ restService.post("/ssml", function(req, res) {
       }
     }
   }
- }else{
-	  var speechResponse = {
-    google: {
-      expectUserResponse: true,
-      richResponse: {
-        items: [
-          {
-            simpleResponse: {
-              textToSpeech: "Sorry, i'am Digit!";
-            }
-          }
-        ]
-      }
-    }
-  }
- };
- if(userQuery === "ordinal"){
-	 var speechResponse = {
+}else if(req.body.queryResult.parameters.aliasTest === "ordinal"){
+	 speechResponse = {
     google: {
       expectUserResponse: true,
       richResponse: {
@@ -138,24 +83,8 @@ restService.post("/ssml", function(req, res) {
       }
     }
   }
- }else{
-	  var speechResponse = {
-    google: {
-      expectUserResponse: true,
-      richResponse: {
-        items: [
-          {
-            simpleResponse: {
-              textToSpeech: "Sorry, i'am Ordinal!";
-            }
-          }
-        ]
-      }
-    }
-  }
- };
- if(userQuery === "cardinal"){
-	 var speechResponse = {
+}else if(req.body.queryResult.parameters.aliasTest === "cardinal"){
+	 speechResponse = {
     google: {
       expectUserResponse: true,
       richResponse: {
@@ -169,15 +98,15 @@ restService.post("/ssml", function(req, res) {
       }
     }
   }
- }else{
-	 var speechResponse = {
+}else{
+	 speechResponse = {
     google: {
       expectUserResponse: true,
       richResponse: {
         items: [
           {
             simpleResponse: {
-              textToSpeech: "Sorry, i'am Cardinal!";
+              textToSpeech: "Sorry, failed to respond!";
             }
           }
         ]
