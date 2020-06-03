@@ -28,7 +28,9 @@ restService.post("/ssml", function(req, res) {
 	  var ssmlCardinal = "<speak>I can speak in cardinals. Your position is <say-as interpret-as=\"cardinal\">10</say-as> in line</speak>";
 	  var ssmlParagraph = "<speak>I can speak a paragraph with two sentences. <p><s>This is sentence one.</s><s>This is sentence two.</s></p></speak>";
  
- if(req.body.queryResult.parameters.aliasTest === "alias"){
+ var userQuery = req.body.queryResult.queryText;
+ 
+ if(userQuery === "alias"){
   var speechResponse = {
     google: {
       expectUserResponse: true,
@@ -44,9 +46,22 @@ restService.post("/ssml", function(req, res) {
     }
   }
  }else{
-	 textToSpeech : "Sorry, from Alias.";
+	  var speechResponse = {
+    google: {
+      expectUserResponse: true,
+      richResponse: {
+        items: [
+          {
+            simpleResponse: {
+              textToSpeech: "Sorry, i'am Alias!";
+            }
+          }
+        ]
+      }
+    }
+  }
  };
- if(req.body.queryResult.parameters.aliasTest === "break"){
+ if(userQuery === "break"){
 	 var speechResponse = {
     google: {
       expectUserResponse: true,
@@ -62,9 +77,22 @@ restService.post("/ssml", function(req, res) {
     }
   }
  }else{
-	 textToSpeech : "Sorry, from Break.";
+	  var speechResponse = {
+    google: {
+      expectUserResponse: true,
+      richResponse: {
+        items: [
+          {
+            simpleResponse: {
+              textToSpeech: "Sorry, i'am Break!";
+            }
+          }
+        ]
+      }
+    }
+  }
  };
- if(req.body.queryResult.parameters.aliasTest === "digit"){
+ if(userQuery === "digit"){
 	 var speechResponse = {
     google: {
       expectUserResponse: true,
@@ -80,9 +108,22 @@ restService.post("/ssml", function(req, res) {
     }
   }
  }else{
-	 textToSpeech : "Sorry, from Digit.";
+	  var speechResponse = {
+    google: {
+      expectUserResponse: true,
+      richResponse: {
+        items: [
+          {
+            simpleResponse: {
+              textToSpeech: "Sorry, i'am Digit!";
+            }
+          }
+        ]
+      }
+    }
+  }
  };
- if(req.body.queryResult.parameters.aliasTest === "ordinal"){
+ if(userQuery === "ordinal"){
 	 var speechResponse = {
     google: {
       expectUserResponse: true,
@@ -98,9 +139,22 @@ restService.post("/ssml", function(req, res) {
     }
   }
  }else{
-	 textToSpeech : "Sorry, from Ordinal.";
+	  var speechResponse = {
+    google: {
+      expectUserResponse: true,
+      richResponse: {
+        items: [
+          {
+            simpleResponse: {
+              textToSpeech: "Sorry, i'am Ordinal!";
+            }
+          }
+        ]
+      }
+    }
+  }
  };
- if(req.body.queryResult.parameters.aliasTest === "cardinal"){
+ if(userQuery === "cardinal"){
 	 var speechResponse = {
     google: {
       expectUserResponse: true,
@@ -116,23 +170,21 @@ restService.post("/ssml", function(req, res) {
     }
   }
  }else{
-	 textToSpeech : "Sorry, from Cardinal.";
- };
- 
- var speechResponse = {
+	 var speechResponse = {
     google: {
       expectUserResponse: true,
       richResponse: {
         items: [
           {
             simpleResponse: {
-              textToSpeech: "Failed!"
+              textToSpeech: "Sorry, i'am Cardinal!";
             }
           }
         ]
       }
     }
-  };
+  }
+ };
   
   return res.json({
     payload: speechResponse,
