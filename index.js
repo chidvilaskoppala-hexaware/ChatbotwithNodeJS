@@ -19,18 +19,23 @@ restService.post("/ssml", function(req, res) {
   if (queryResult) {
     const { aliasTest } = queryResult.parameters;
 	
-	    if (aliasTest === "alias test") {
+	 if (aliasTest === "alias test") {
 
-      let responseText = '<speak>I can also substitute phrases, like the <sub alias=\"World Wide Web Consortium\">W3C</sub><speak>';
-      let respObj = {
+      let responseText = '<speak>I can substitute phrases, like the <sub alias=\"World Wide Web Consortium\">W3C</sub><speak>';
+      
+        fulfillmentText: responseText;
+		
+		let respObj = {
         fulfillmentText: responseText
       };
       res.json(respObj);
+      
     } else {
 		
 		fulfillmentText: 'This response is from else condition... Sorry!';
       
     }
+  }
 	
   var speech =
     req.body.queryResult &&
@@ -57,9 +62,9 @@ restService.post("/ssml", function(req, res) {
   return res.json({
     payload: speechResponse,
     //data: speechResponse,
-    fulfillmentText: speech,
-    speech: speech,
-    displayText: speech,
+    fulfillmentText: fulfillmentText,
+    speech: fulfillmentText,
+    displayText: fulfillmentText,
     source: "ssml-test-tvsxny"
   });
 });
