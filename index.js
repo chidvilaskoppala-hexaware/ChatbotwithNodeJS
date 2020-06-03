@@ -14,6 +14,24 @@ restService.use(
 restService.use(bodyParser.json());
 
 restService.post("/ssml", function(req, res) {
+	let { queryResult } = req.body;
+
+  if (queryResult) {
+    const { aliasTest } = queryResult.parameters;
+	
+	    if (aliasTest === "alias test") {
+
+      let responseText = '<speak>I can also substitute phrases, like the <sub alias=\"World Wide Web Consortium\">W3C</sub><speak>';
+      let respObj = {
+        fulfillmentText: responseText
+      };
+      res.json(respObj);
+    } else {
+		
+		fulfillmentText: 'This response is from else condition... Sorry!';
+      
+    }
+	
   var speech =
     req.body.queryResult &&
     req.body.queryResult.parameters &&
@@ -28,7 +46,7 @@ restService.post("/ssml", function(req, res) {
         items: [
           {
             simpleResponse: {
-              textToSpeech: "Response sent from your NodeJS code. Congratulations on your achievement!"
+              textToSpeech: fulfillmentText
             }
           }
         ]
