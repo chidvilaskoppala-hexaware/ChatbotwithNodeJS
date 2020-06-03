@@ -14,35 +14,14 @@ restService.use(
 restService.use(bodyParser.json());
 
 restService.post("/ssml", function(req, res) {
-	let { queryResult } = req.body;
-
-  if (queryResult) {
-    const { aliasTest } = queryResult.parameters;
-	
-	 if (aliasTest === "alias test") {
-
-      let responseText = '<speak>I can substitute phrases, like the <sub alias=\"World Wide Web Consortium\">W3C</sub><speak>';
-      
-        fulfillmentText: responseText;
-		
-		let respObj = {
-        fulfillmentText: responseText
-      };
-      res.json(respObj);
-      
-    } else {
-		
-		fulfillmentText: 'This response is from else condition... Sorry!';
-      
-    }
+  var speech = req.body.queryResult && req.body.queryResult.parameters && req.body.queryResult.parameters.aliasTest
+	? req.body.queryResult.parameters.aliasTest : "Seems like some problem. Speak again.";
+  if(speech === 'alias'){
+	  let response = '<speak>I can substitute phrases, like the <sub alias=\"World Wide Web Consortium\">W3C</sub></speak>'
+	  speech : response;
+  }else{
+	  speech : 'Sorry, This is else condition response!';
   }
-	
-  var speech =
-    req.body.queryResult &&
-    req.body.queryResult.parameters &&
-    req.body.queryResult.parameters.aliasTest
-      ? req.body.queryResult.parameters.aliasTest
-      : "Seems like some problem. Speak again.";
   
   var speechResponse = {
     google: {
@@ -51,7 +30,7 @@ restService.post("/ssml", function(req, res) {
         items: [
           {
             simpleResponse: {
-              textToSpeech: fulfillmentText
+              textToSpeech: speech
             }
           }
         ]
@@ -62,9 +41,9 @@ restService.post("/ssml", function(req, res) {
   return res.json({
     payload: speechResponse,
     //data: speechResponse,
-    fulfillmentText: fulfillmentText,
-    speech: fulfillmentText,
-    displayText: fulfillmentText,
+    fulfillmentText: speech,
+    speech: speech,
+    displayText: speech,
     source: "ssml-test-tvsxny"
   });
 });
