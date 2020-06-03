@@ -20,7 +20,15 @@ restService.post("/ssml", function(req, res) {
     req.body.queryResult.parameters.aliasTest
       ? req.body.queryResult.parameters.aliasTest
       : "Seems like some problem. Speak again.";
-  
+	  
+	  var ssmlAlias = "<speak>I can substitute phrases, like the <sub alias=\"World Wide Web Consortium\">W3C</sub></speak>";
+	  var ssmlBreak = "<speak>I can pause <break time=\"3\" /></speak>";
+	  var ssmlDigits = "<speak>I can even speak in digits. Your position in line is <say-as interpret-as=\"digits\">10</say-as></speak>";
+	  var ssmlOrdinal = "<speak>I can speak in ordinals. You are <say-as interpret-as=\"ordinal\">10</say-as> in line</speak>";
+	  var ssmlCardinal = "<speak>I can speak in cardinals. Your position is <say-as interpret-as=\"cardinal\">10</say-as> in line</speak>";
+	  var ssmlParagraph = "<speak>I can speak a paragraph with two sentences. <p><s>This is sentence one.</s><s>This is sentence two.</s></p></speak>";
+ 
+ if(req.body.queryResult.parameters.aliasTest === "alias"){
   var speechResponse = {
     google: {
       expectUserResponse: true,
@@ -29,6 +37,96 @@ restService.post("/ssml", function(req, res) {
           {
             simpleResponse: {
               ssml: "<speak>I can substitute phrases, like the <sub alias=\"World Wide Web Consortium\">W3C</sub></speak>"
+            }
+          }
+        ]
+      }
+    }
+  }
+ }else{
+	 textToSpeech : "Sorry, from Alias.";
+ };
+ if(req.body.queryResult.parameters.aliasTest === "break"){
+	 var speechResponse = {
+    google: {
+      expectUserResponse: true,
+      richResponse: {
+        items: [
+          {
+            simpleResponse: {
+              ssml: "<speak>I can pause <break time=\"3\" /></speak>"
+            }
+          }
+        ]
+      }
+    }
+  }
+ }else{
+	 textToSpeech : "Sorry, from Break.";
+ };
+ if(req.body.queryResult.parameters.aliasTest === "digit"){
+	 var speechResponse = {
+    google: {
+      expectUserResponse: true,
+      richResponse: {
+        items: [
+          {
+            simpleResponse: {
+              ssml: "<speak>I can even speak in digits. Your position in line is <say-as interpret-as=\"digits\">10</say-as></speak>";
+            }
+          }
+        ]
+      }
+    }
+  }
+ }else{
+	 textToSpeech : "Sorry, from Digit.";
+ };
+ if(req.body.queryResult.parameters.aliasTest === "ordinal"){
+	 var speechResponse = {
+    google: {
+      expectUserResponse: true,
+      richResponse: {
+        items: [
+          {
+            simpleResponse: {
+              ssml: "<speak>I can speak in ordinals. You are <say-as interpret-as=\"ordinal\">10</say-as> in line</speak>";
+            }
+          }
+        ]
+      }
+    }
+  }
+ }else{
+	 textToSpeech : "Sorry, from Ordinal.";
+ };
+ if(req.body.queryResult.parameters.aliasTest === "cardinal"){
+	 var speechResponse = {
+    google: {
+      expectUserResponse: true,
+      richResponse: {
+        items: [
+          {
+            simpleResponse: {
+              ssml: "<speak>I can speak in cardinals. Your position is <say-as interpret-as=\"cardinal\">10</say-as> in line</speak>";
+            }
+          }
+        ]
+      }
+    }
+  }
+ }else{
+	 textToSpeech : "Sorry, from Cardinal.";
+ };
+ 
+ var speechResponse = {
+    google: {
+      expectUserResponse: true,
+      richResponse: {
+        items: [
+          {
+            simpleResponse: {
+              textToSpeech: "Failed!"
             }
           }
         ]
